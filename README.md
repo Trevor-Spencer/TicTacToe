@@ -28,6 +28,7 @@ on any square sized grid in a terminal or graphical window. The game continues u
 - C++ compiler (g++, minGW, etc.)
 - OpenGL
 - GLFW (or use the library provided in the repository)
+- GLAD API gl (Version 3.3)
 - GDI (part of Windows)
 
 ## Installation
