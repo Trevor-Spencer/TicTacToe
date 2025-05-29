@@ -40,7 +40,15 @@ vector<node>P2List;
 bool shouldRedraw = true;
 
 /*
-Function Information
+Function: initializeBoard
+Function Description:
+    Initializes the game board to a default state where all cells are empty (-1).
+Parameters:
+    board: Reference to a 2D array representing the game board.
+    boardSize: Size of the board (number of rows/columns).
+
+Returns:
+    void: Function does not return a value.
 */
 void initializeBoard(int** (&board), int boardSize)
 {
@@ -53,9 +61,22 @@ void initializeBoard(int** (&board), int boardSize)
     }
 }
 
-
 /*
-Function Information
+Function: placeBoard
+Function Description:
+    Places a player's piece on the board at the specified coordinates.
+    Will update player's piece list and remove the last piece if the player has already
+    placed the maximum number of pieces. Increases the turn count and switches the player.
+
+Parameters:
+    board: Reference to a 2D array representing the game board.
+    boardSize: Size of the board (number of rows/columns).
+    PList: Reference to the player's piece list (vector of nodes).
+    xBoard: X coordinate on the board where the piece is placed.
+    yBoard: Y coordinate on the board where the piece is placed.
+
+Returns:
+    void: Function does not return a value.
 */
 void placeBoard(int** (&board),int boardSize, vector<node>& PList, int xBoard, int yBoard)
 {
@@ -90,7 +111,19 @@ void placeBoard(int** (&board),int boardSize, vector<node>& PList, int xBoard, i
     turns++;
 }
 
-bool checkBoard(int** board, int boardSize)
+/*
+Function: checkBoard
+Function Description:
+    Checks if the game board is full (i.e., all cells are occupied).
+
+Parameters:
+    board: Reference to a 2D array representing the game board.
+    boardSize: Size of the board (number of rows/columns).
+
+Returns:
+    bool: Returns true if the board is full, false otherwise.
+*/
+bool fullBoard(int** board, int boardSize)
 {
     //Check if the board is full
     for(int i = 0; i < boardSize; i++)
@@ -107,7 +140,17 @@ bool checkBoard(int** board, int boardSize)
 }
 
 /*
-Function Information
+Function: checkWinner
+Function Description:
+    Checks if there is a winner on the game board by checking rows, columns, and diagonals.
+    If a winner is found, it draws a line across the winning combination.
+
+Parameters:
+    board: Reference to a 2D array representing the game board.
+    boardSize: Size of the board (number of rows/columns).
+
+Returns:
+    bool: Returns true if a winner is found, false otherwise.
 */
 bool checkWinner(int** board,int boardSize)
 {
@@ -226,6 +269,23 @@ bool checkWinner(int** board,int boardSize)
     return winner;
 }
 
+/*
+Function: mouseClickCallback
+Function Description:
+    Callback function for mouse click events. It converts the mouse coordinates to OpenGL coordinates,
+    calculates the board coordinates, and places a piece on the board if the clicked cell is empty.
+    If a piece is placed, it sets a flag to redraw the board. If the clicked cell is already occupied,
+    it prints an error message.
+
+Parameters:
+    window: Pointer to the GLFW window.
+    button: Mouse button that was clicked.
+    action: Action performed (press or release).
+    mods: Modifier keys (e.g., Shift, Ctrl).
+
+Returns:
+    void: Function does not return a value.
+*/
 void mouseClickCallback(GLFWwindow* window, int button, int action, int mods)
 {
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
@@ -259,6 +319,20 @@ void mouseClickCallback(GLFWwindow* window, int button, int action, int mods)
     
 }
 
+/*
+Function: drawBoard
+Function Description:
+    Draws the game board, including the grid lines and the pieces placed by the players.
+    It uses OpenGL to render the board and pieces based on their current state. If a player has the max pieces placed,
+    it highlights the last oldest placed by that player in red. Also checks if game should be finished so it doesnt
+    place a red symbol for a player piece. Circular pieces are drawn for player 0 and X pieces for player 1.
+
+Parameters:
+    None
+
+Returns:
+    void: Function does not return a value.
+*/
 void drawBoard()
 {
     float linePlacement = 2.0f / (float)boardSize;
@@ -331,10 +405,6 @@ void drawBoard()
     }
 }
 
-
-/*
-Function Information
-*/
 int main()
 {
     cout << "Welcome to the Window Tic Tac Toe Game!" << endl;
@@ -399,7 +469,7 @@ int main()
         {
             
 
-            if(checkWinner(board, boardSize) || checkBoard(board, boardSize))
+            if(checkWinner(board, boardSize) || fullBoard(board, boardSize))
             {
                 endGame = true;
                 glfwSetMouseButtonCallback(window, nullptr); // Unregister the mouse button callback
@@ -440,7 +510,7 @@ int main()
             cout << "No Winner Found" << endl;
         }
     }
-    if(checkBoard(board, boardSize))
+    if(fullBoard(board, boardSize))
     {
         cout << "Board is full. No winner." << endl;
     }

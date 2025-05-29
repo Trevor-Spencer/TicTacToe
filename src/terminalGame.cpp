@@ -24,8 +24,18 @@ class node
         int getXCord() {return xCord;}
         int getYCord() {return yCord;}
 };
+
 /*
-Function Information
+Function: initializeBoard
+Function Description:
+    Initializes the game board to a default state where all cells are empty (-1).
+
+Parameters:
+    board: Reference to a 2D array representing the game board.
+    boardSize: Size of the board (number of rows/columns).
+
+Returns:
+    void: Function does not return a value.
 */
 void initializeBoard(int** (&board), int boardSize)
 {
@@ -39,7 +49,16 @@ void initializeBoard(int** (&board), int boardSize)
 }
 
 /*
-Function Information
+Function: displayBoard
+Function Description:
+    Displays the current state of the game board in the console.
+
+Parameters:
+    board: Reference to a 2D array representing the game board.
+    boardSize: Size of the board (number of rows/columns).
+
+Returns:
+    void: Function does not return a value.
 */
 void displayBoard(int** board, int boardSize)
 {
@@ -86,7 +105,21 @@ void displayBoard(int** board, int boardSize)
 }
 
 /*
-Function Information
+Function: placeBoard
+Function Description:
+    Places a piece on the game board at the specified coordinates (x, y) for the current player.
+    If the board is full, it removes the oldest piece from the player's list and places the new piece.
+    This function loops until a valid placement is made, ensuring the coordinates are within bounds and not already occupied.
+    The function updates the board and the player's piece list accordingly.
+
+Parameters:
+    board: Reference to a 2D array representing the game board.
+    boardSize: Size of the board (number of rows/columns).
+    player: The current player (1 or 0).
+    PList: Reference to the player's piece list (vector of nodes).
+
+Returns:
+    void: Function does not return a value.
 */
 void placeBoard(int** (&board),int boardSize, int player, vector<node>& PList)
 {
@@ -143,7 +176,14 @@ void placeBoard(int** (&board),int boardSize, int player, vector<node>& PList)
 }
 
 /*
-Function Information
+Function: checkWinner
+Function Description:
+    Checks if there is a winner on the game board by checking rows, columns, and diagonals.
+Parameters:
+    board: Reference to a 2D array representing the game board.
+    boardSize: Size of the board (number of rows/columns).
+Returns:
+    bool: Returns true if a winner is found, false otherwise.
 */
 bool checkWinner(int** board,int boardSize)
 {
@@ -234,9 +274,6 @@ bool checkWinner(int** board,int boardSize)
     return winner;
 }
 
-/*
-Function Information
-*/
 int main()
 {
     //Declare variables
