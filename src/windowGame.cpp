@@ -34,7 +34,7 @@ int** board;
 bool endGame;
 int player = 1;
 int turns = 0;
-int boardSize = 3; //Change this to set the size of the board
+int boardSize = 0;
 vector<node>P1List;
 vector<node>P2List;
 bool shouldRedraw = true;
@@ -337,6 +337,13 @@ Function Information
 */
 int main()
 {
+    cout << "Welcome to the Window Tic Tac Toe Game!" << endl;
+    cout << "Enter the size of the board (3 for 3x3, 4 for 4x4, etc.): ";
+    cin >> boardSize;
+    if (boardSize < 3) {
+        cout << "Board size must be at least 3." << endl;
+        return 1;
+    }
     board = (int**)malloc(boardSize * sizeof(int*));
     if (board == NULL) {
         perror("Failed to allocate row pointers");

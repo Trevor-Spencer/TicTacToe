@@ -51,15 +51,15 @@ on any square sized grid in a terminal or graphical window. The game continues u
     ```bash
     ./TicTacToeWindow
     ```
+    Enter the size of the board you want to play on in the terminal.
     - For Terminal mode:
     ```bash
     ./TicTacToeTerminal
     ```
+    Enter the size of the board you want to play on in the terminal.
+    Follow the prompts to play the game.
 4. OPTIONAL: If you dont have a c++ compiler installed, you can download the precompiled binaries from the /bin folder
 
 ## Usage
-- Open source code of app type in any text editor to change the board size.
-    For Terminal mode, you can change the board size in the `TicTacTowTerminal.cpp` file on line 235.
-    For Windowed mode, you can change the board size in the `TicTacToeWindow.cpp` file on line 37.
 - Compile the code using the provided makefile.
 - Run the game in terminal or windowed mode as per your preference.
