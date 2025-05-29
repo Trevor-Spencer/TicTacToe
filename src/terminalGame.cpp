@@ -44,7 +44,13 @@ Function Information
 void displayBoard(int** board, int boardSize)
 {
     //Go through Display board
-    cout << "+---+\n";
+    cout << "+";
+    for(int i = 0; i < boardSize; i++)
+    {
+        cout << "-";
+    
+    }
+    cout << "+\n";
     for(int row = 0; row < boardSize; row++)
     {
         cout << "|";
@@ -69,7 +75,13 @@ void displayBoard(int** board, int boardSize)
         }
         cout << "|\n";
     }
-    cout << "+---+\n";
+     cout << "+";
+    for(int i = 0; i < boardSize; i++)
+    {
+        cout << "-";
+    
+    }
+    cout << "+\n";
 
 }
 
@@ -100,7 +112,7 @@ void placeBoard(int** (&board),int boardSize, int player, vector<node>& PList)
             invalidPlace = true;
             continue;
         }
-        if(PList.size() == 3)
+        if(PList.size() == boardSize)
         {
             node remNode = PList.back();
             PList.pop_back();
