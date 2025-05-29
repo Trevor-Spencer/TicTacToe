@@ -43,7 +43,7 @@ on any square sized grid in a terminal or graphical window. The game continues u
     make TicTacToeWindow
     ```
     For Terminal mode:
-    ````bash
+    ```bash
     make TicTacToeTerminal
     ```
 3. Run the game:
